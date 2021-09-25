@@ -7,6 +7,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Model');
+        $this->load->model('Model_google_pie_chart', 'Mchart');
         is_logged_in();
     }
 
@@ -22,6 +23,7 @@ class Admin extends CI_Controller
         $data['jmlproposal'] = $this->db->get('proposal')->num_rows();
         $data['jmlpmks'] = $this->db->get('pengenalan_tempat')->num_rows();
         //$data['jmllaporan'] = $this->db->get('user')->num_rows();
+        $data["dataPMKS"] = $this->Mchart->get_data_pmks();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

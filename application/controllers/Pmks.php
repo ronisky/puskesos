@@ -109,6 +109,30 @@ class Pmks extends CI_Controller
             $this->load->view('pmks/klasifikasi', $data);
             $this->load->view('templates/footer');
         } elseif ($keluarga == 3 && $kesehatan == 3 && $ekonomi == 2 && $lingkungan == 2 && $pekerjaan_tetap == 2 && $tempat_tinggal == 1 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
 
                 'nama_responden' => $this->input->post('nama_responden'),
@@ -145,6 +169,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 2 && $ekonomi == 2 && $pekerjaan_tetap == 2 && $catatan_kepolisian == 1 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -171,7 +219,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -180,6 +228,31 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 3 && $kesehatan == 3 && $ekonomi == 2 && $tempat_tinggal == 1 && $lingkungan == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -206,7 +279,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -215,6 +288,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 2 && $kesehatan == 3 && $lingkungan == 2 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -241,7 +338,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -250,6 +347,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($lingkungan == 2 && $pekerjaan_tetap == 2 && $tempat_tinggal == 1) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -276,7 +397,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -285,6 +406,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 2 && $ekonomi == 2 && $pekerjaan_tetap == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -311,7 +456,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -320,6 +465,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($kesehatan == 3 && $lingkungan == 2 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -346,7 +515,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -355,6 +524,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 3 && $kesehatan == 4 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -381,7 +574,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -390,6 +583,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($ekonomi == 2 && $pekerjaan_tetap == 2 && $tempat_tinggal == 1) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -416,7 +633,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -425,6 +642,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($lingkungan == 2 && $catatan_kepolisian == 1 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -451,7 +692,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -460,6 +701,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($ekonomi == 2 && $tempat_tinggal == 1 && $korban_bencana == 1) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -486,7 +751,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -495,6 +760,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 2 && $ekonomi == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -521,7 +810,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -530,6 +819,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 2 && $kesehatan == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -556,7 +869,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -565,6 +878,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 2 && $lingkungan == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -591,7 +928,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -600,6 +937,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($keluarga == 3 && $ekonomi == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -626,7 +987,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -635,6 +996,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($catatan_kepolisian == 2 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -661,7 +1046,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -671,6 +1056,30 @@ class Pmks extends CI_Controller
             }
             //2
         } elseif ($ekonomi == 2 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -697,7 +1106,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -707,6 +1116,30 @@ class Pmks extends CI_Controller
             }
             //1
         } elseif ($tempat_tinggal == 3 && $korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -733,7 +1166,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -742,6 +1175,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($ekonomi == 2 && $pekerjaan_tetap == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -768,7 +1225,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -777,6 +1234,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($lingkungan == 2 && $menikah == 1) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -803,7 +1284,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -812,6 +1293,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($pekerjaan_tetap == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -838,7 +1343,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -847,6 +1352,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($kesehatan == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -873,7 +1402,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -882,6 +1411,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($korban_bencana == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -908,7 +1461,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -917,6 +1470,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($catatan_kepolisian == 1) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -943,7 +1520,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -952,6 +1529,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($catatan_kepolisian == 2) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -978,7 +1579,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -987,6 +1588,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } elseif ($menikah == 1) {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -1013,7 +1638,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -1022,6 +1647,30 @@ class Pmks extends CI_Controller
                 redirect('pmks/klasifikasi');
             }
         } else {
+
+            // cek jika ada gambar yg akan di upload
+            $upload_foto = $_FILES['foto'];
+
+            if ($upload_foto) {
+                $config['allowed_types'] = 'jpeg|gif|jpg|png|pdf';
+                $config['max_size']  = '1000';
+                $config['max_width']  = '5000';
+                $config['max_height']  = '5000';
+                $config['upload_path'] = './assets/verivikasi/gambar/';
+                $config['overwrite'] = TRUE;
+                $config['remove_spaces'] = TRUE;
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_foto = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_foto);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $data = [
                 'nama_responden' => $this->input->post('nama_responden'),
                 'tempat_lahir' => $this->input->post('tempat_lahir'),
@@ -1048,7 +1697,7 @@ class Pmks extends CI_Controller
             ];
             $nik = $this->input->post('nik');
             $check_nik = $this->db->get_where('pengenalan_tempat', array('nik' => $nik));
-            if ($check_nik) {
+            if ($check_nik->row_array() > 0) {
                 $this->session->set_flashdata('flasherror', 'NIK Sudah Terdaftar');
                 redirect('pmks/klasifikasi');
             } else {
@@ -1058,7 +1707,6 @@ class Pmks extends CI_Controller
             }
         }
     }
-
 
     // UBAH PMKS
     public function ubahpmks($id)

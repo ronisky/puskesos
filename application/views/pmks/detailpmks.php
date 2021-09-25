@@ -13,8 +13,8 @@
                         <div class="form-group">
                             <label for="role">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama" value="<?= $proposal['nama']; ?>">
-                            <label for="role">Tempat Tanggal Lahir</label>
-                            <input type="text" class="form-control" id="tempat_tgllahir" name="tempat_tgllahir" value="<?= $proposal['tempat_tgllahir']; ?>">
+                            <label for="role">Tanggal Lahir</label>
+                            <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?= $proposal['tanggal_lahir']; ?>">
                             <label for="role">Jenis Kelamin</label>
                             <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="<?= $proposal['jenis_kelamin']; ?>">
                             <label for="role">Judul Proposal</label>
@@ -30,7 +30,7 @@
                             <label for="role">Keperluan</label>
                             <input type="text" class="form-control" id="keperluan" name="keperluan" value="<?= $proposal['keperluan']; ?>">
                             <label for="role">Tujuan </label>
-                            <input type="text" class="form-control" id="tujuan" name="tujjuan" value="<?= $proposal['tujuan']; ?>">
+                            <input type="text" class="form-control" id="tujuan" name="tujuan" value="<?= $proposal['tujuan']; ?>">
                             <label for="role">Agama</label>
                             <input type="text" class="form-control" id="agama" name="agama" value="<?= $proposal['agama']; ?>">
                         </div>

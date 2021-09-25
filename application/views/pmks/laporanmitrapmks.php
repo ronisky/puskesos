@@ -80,8 +80,10 @@
                                         $hpv = '<span class="badge badge-warning">Fakir Miskin</span>';
                                     } elseif ($hp['hasil_pmks'] == 25) {
                                         $hpv = '<span class="badge badge-warning">Keluarga Bermasalah Sosial Psikologis</span>';
+                                    } elseif ($hp['hasil_pmks'] == 26) {
+                                        $hpv = '<span class="badge badge-warning">Komunitas Adat Terpencil</span>';
                                     } else {
-                                        $hpv = '<span class="badge badge-primary">Komunitas Adat Terpencil</span>';
+                                        $hpv = '<span class="badge badge-primary">Tidak Ada Hasil</span>';
                                     }
 
                                     if ($hp['konfirmasi_pmks'] == 1) {

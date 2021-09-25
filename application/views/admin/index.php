@@ -63,9 +63,27 @@
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
         </div>
-        <!-- ./col -->
+
     </div>
 
+    <!-- PIE CHART -->
+
+    <div class="card card-success">
+        <div class="card-header">
+            <h3 class="card-title">Data Hasil Penyandang Masalah Kesejahteraan Sosial</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div id="piechart" style="height: 500px;"></div>
+        </div>
+        <!-- /.card-body -->
+    </div>
 </section>
 
 <!-- /.content -->

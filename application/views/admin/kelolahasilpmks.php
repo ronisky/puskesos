@@ -41,7 +41,7 @@
                                     <tr>
                                         <th scope="row"><?= $i;  ?></th>
                                         <td><?= $kf['nama_responden']; ?></td>
-                                        <td><?= $kf['tempat_tanggallahir']; ?></td>
+                                        <td><?= $kf['tanggal_lahir']; ?></td>
                                         <td><?= $kf['usia']; ?></td>
                                         <td><?= $kf['no_telepon']; ?></td>
                                         <td><?= $kfv ?></td>

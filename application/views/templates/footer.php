@@ -75,6 +75,9 @@
 <!-- ChartJS -->
 <script src="<?= base_url('assets/'); ?>plugins/chart.js/Chart.min.js"></script>
 
+<!-- JS Google Chart -->
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
 <script type='text/javascript'>
     $(window).load(function() {
         function formatDate(date) {
@@ -114,7 +117,6 @@
 
         let currentDate = formatDate(Date.now());
         $('#tanggal_pendataan').val(currentDate);
-        
         $('#tanggal_lahir').change(function() {
             let date = $('#tanggal_lahir').val();
             const age = calculate_age(new Date(String(date)));
@@ -299,8 +301,8 @@
     $(document).ready(function() {
         $('.dropify').dropify({
             messages: {
-                default: 'Drag atau upload file disini!',
-                replace: 'Drag atau upload file disini atau klik untuk menimpa!',
+                default: 'Drag atau upload file KTP dan KK disini!',
+                replace: 'Drag atau upload file KTP dan KK disini atau klik untuk menimpa!',
                 remove: 'dihapus',
                 error: 'Error'
             }
@@ -316,4 +318,29 @@
         closeBackground: '',
         closeColor: '#fff'
     });
+</script>
+
+<script>
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Tahun', 'Total'],
+            <?php
+            foreach ($dataPMKS as $pmks) {
+                echo "['" . $pmks['hasil_pmks'] . "'," . $pmks['total'] . "],";
+            }
+            ?>
+        ]);
+        var options = {
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
 </script>

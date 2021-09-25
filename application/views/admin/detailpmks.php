@@ -13,7 +13,7 @@
                             <label for="role">Nama Responden</label>
                             <input type="text" class="form-control" id="nama_responden" name="nama_responden" value="<?= $d_pmks['nama_responden']; ?>">
                             <label for="role">Tempat Tanggal Lahir</label>
-                            <input type="text" class="form-control" id="tempat_tanggallahir" name="tempat_tanggallahir" value="<?= $d_pmks['tempat_tanggallahir']; ?>">
+                            <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?= $d_pmks['tanggal_lahir']; ?>">
                             <label for="role">Usia</label>
                             <input type="text" class="form-control" id="usia" name="usia" value="<?= $d_pmks['usia']; ?>">
                             <label for="role">No Telepon</label>
@@ -28,6 +28,13 @@
                             <input type="text" class="form-control" id="nama_pengawas" name="nama_pengawas" value="<?= $d_pmks['nama_pengawas']; ?>">
                             <label for="role">Tanggal Pendataan</label>
                             <input type="text" class="form-control" id="tanggal_pendataan" name="tanggal_pendataan" value="<?= $d_pmks['tanggal_pendataan']; ?>">
+                            <label>Lampiran</label>
+                            <br>
+                            <td>
+                                <a href="<?= base_url('assets/verivikasi/gambar/') . $d_pmks['foto']; ?>" class="venobox">
+                                    <img src="<?= base_url('assets/verivikasi/gambar/') . $d_pmks['foto']; ?>" class="img-fluid m-b-12" height="300px" width="500px;">
+                            </td>
+
                         </div>
                     </div>
                 </div>
